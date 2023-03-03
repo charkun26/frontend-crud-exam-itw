@@ -11,6 +11,10 @@ export const ContextParent = ({ children }) => {
 	const [users, setUsers] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
 
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
 	// Requesting api
 	useEffect(() => {
 		axios
@@ -23,8 +27,28 @@ export const ContextParent = ({ children }) => {
 			});
 	}, []);
 
+	const addUser = (email, firstname, lastname) => {
+		const userId = Math.floor(Math.random() * 10000);
+
+		setUsers((prevState) => [
+			...prevState,
+			{
+				id: userId,
+				email: email,
+				first_name: firstname,
+				last_name: lastname,
+			},
+		]);
+
+		console.log(users);
+
+		handleClose();
+	};
+
 	return (
-		<ContextProvider.Provider value={{ myInfo, users }}>
+		<ContextProvider.Provider
+			value={{ myInfo, users, show, setShow, handleClose, handleShow, addUser }}
+		>
 			{children}
 		</ContextProvider.Provider>
 	);

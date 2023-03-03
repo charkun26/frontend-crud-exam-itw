@@ -6,8 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/style.css';
 // Components
-import Home from './components/Home';
-import Users from './components/Users';
+import { Home, Users } from './components/index';
 
 function App() {
 	return (

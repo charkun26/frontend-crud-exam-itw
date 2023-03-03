@@ -1,6 +1,5 @@
 // React
 import React, { useContext } from 'react';
-
 // Libraries
 import Table from 'react-bootstrap/Table';
 import { FaTrash } from 'react-icons/fa';
