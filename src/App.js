@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/style.css';
 // Components
-import { Home, Users } from './components/index';
+import { Home, Users, User } from './components/index';
 
 function App() {
 	return (
@@ -16,6 +16,7 @@ function App() {
 					<Routes>
 						<Route exact path="/" element={<Home />} />
 						<Route path="/users" element={<Users />} />
+						<Route path="/user/:id" element={<User />} />
 					</Routes>
 				</Router>
 			</div>

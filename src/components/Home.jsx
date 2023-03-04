@@ -9,7 +9,7 @@ const Home = () => {
 	const { myInfo } = useContext(ContextProvider);
 
 	return (
-		<div>
+		<div className="container">
 			Home Hi! <br></br>
 			{myInfo.name}
 			{myInfo.email}

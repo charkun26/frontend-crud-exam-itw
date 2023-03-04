@@ -4,12 +4,14 @@ import React, { useContext } from 'react';
 import Table from 'react-bootstrap/Table';
 import { FaTrash } from 'react-icons/fa';
 import { BsPencilFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 // Context API
 import { ContextProvider } from '../context/context';
 // Data
 import { dataStyles } from '../data/dataContainer';
 // Components
 import EditUserModal from './EditUserModal';
+import DeleteUserModal from './DeleteUserModal';
 
 const TableComponent = () => {
 	const { users, handleShow, linkId } = useContext(ContextProvider);
@@ -30,6 +32,7 @@ const TableComponent = () => {
 						return (
 							<tr key={item.id}>
 								<td className="text-center">{item.id}</td>
+
 								<td className="d-flex">
 									<img
 										src={item.avatar}
@@ -38,9 +41,14 @@ const TableComponent = () => {
 										style={{ width: '50px' }}
 									/>
 									<div>
-										<label>{item.first_name + ' ' + item.last_name}</label>
-										<br></br>
-										<small>{item.email}</small>
+										<Link
+											to={`/user/${item.id}`}
+											className={dataStyles.textDeco}
+										>
+											<small>{item.first_name + ' ' + item.last_name}</small>
+											<br></br>
+											<small>{item.email}</small>
+										</Link>
 									</div>
 								</td>
 
@@ -52,7 +60,10 @@ const TableComponent = () => {
 										<BsPencilFill />
 									</button>
 
-									<button className={dataStyles.button}>
+									<button
+										className={dataStyles.button}
+										onClick={() => handleShow('delete', item.id)}
+									>
 										<FaTrash />
 									</button>
 								</td>
@@ -60,6 +71,7 @@ const TableComponent = () => {
 						);
 					})}
 				<EditUserModal id={linkId} />
+				<DeleteUserModal id={linkId} />
 			</tbody>
 		</Table>
 	);

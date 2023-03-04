@@ -33,6 +33,7 @@ export const myInfo = {
 };
 
 export const dataStyles = {
+	textDeco: 'text-decoration-none text-dark',
 	designBetween:
 		'd-flex align-items-center justify-content-between py-2 border-bottom',
 	button: 'bg-white p-2 rounded border-0 mx-1',

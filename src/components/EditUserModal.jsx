@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
+// Libraries
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-
+// Context
 import { ContextProvider } from '../context/context';
 
 const EditUserModal = ({ id }) => {

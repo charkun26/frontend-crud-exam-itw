@@ -15,24 +15,8 @@ export const ContextParent = ({ children }) => {
 	const [lastName, setLastName] = useState('');
 	const [createModal, setCreateShow] = useState(false);
 	const [editModal, setEditModal] = useState(false);
+	const [deleteModal, setDeleteModal] = useState(false);
 	const [linkId, setLinkId] = useState(null);
-
-	const handleClose = (action) => {
-		if (action === 'create') {
-			setCreateShow(false);
-		} else if (action === 'edit') {
-			setEditModal(false);
-		}
-	};
-
-	const handleShow = (action, id) => {
-		if (action === 'create') {
-			setCreateShow(true);
-		} else if (action === 'edit') {
-			setLinkId(id);
-			setEditModal(true);
-		}
-	};
 
 	// Requesting api
 	useEffect(() => {
@@ -45,6 +29,28 @@ export const ContextParent = ({ children }) => {
 				console.log(error.message);
 			});
 	}, []);
+
+	const handleClose = (action) => {
+		if (action === 'create') {
+			setCreateShow(false);
+		} else if (action === 'edit') {
+			setEditModal(false);
+		} else if (action === 'delete') {
+			setDeleteModal(false);
+		}
+	};
+
+	const handleShow = (action, id) => {
+		if (action === 'create') {
+			setCreateShow(true);
+		} else if (action === 'edit') {
+			setLinkId(id);
+			setEditModal(true);
+		} else if (action === 'delete') {
+			setLinkId(id);
+			setDeleteModal(true);
+		}
+	};
 
 	const addUser = (email, firstname, lastname) => {
 		var userId = Math.floor(Math.random() * 100);
@@ -64,7 +70,6 @@ export const ContextParent = ({ children }) => {
 		setEmail('');
 		setFirstName('');
 		setLastName('');
-
 		handleClose('create');
 	};
 
@@ -82,13 +87,25 @@ export const ContextParent = ({ children }) => {
 			return item;
 		});
 
+		setEmail('');
+		setFirstName('');
+		setLastName('');
 		setUsers(edit);
 		handleClose('edit');
+	};
+
+	const deleteUser = (id) => {
+		const edit = users.filter((item) => item.id !== id);
+
+		setUsers(edit);
+		handleClose('delete');
 	};
 
 	return (
 		<ContextProvider.Provider
 			value={{
+				deleteModal,
+				deleteUser,
 				linkId,
 				editModal,
 				editUser,
