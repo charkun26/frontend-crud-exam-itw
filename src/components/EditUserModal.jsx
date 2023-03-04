@@ -5,23 +5,20 @@ import Modal from 'react-bootstrap/Modal';
 
 import { ContextProvider } from '../context/context';
 
-const CreateUserModal = () => {
+const EditUserModal = ({ id }) => {
 	const {
-		createModal,
+		editModal,
 		handleClose,
-		addUser,
-		email,
+		editUser,
 		setEmail,
-		firstName,
 		setFirstName,
-		lastName,
 		setLastName,
 	} = useContext(ContextProvider);
 
 	return (
-		<Modal show={createModal} onHide={() => handleClose('create')}>
+		<Modal show={editModal} onHide={() => handleClose('edit')}>
 			<Modal.Header closeButton>
-				<Modal.Title>Edit User</Modal.Title>
+				<Modal.Title>Edit User (Edit)</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<Form>
@@ -55,13 +52,10 @@ const CreateUserModal = () => {
 				</Form>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="secondary" onClick={() => handleClose('create')}>
+				<Button variant="secondary" onClick={() => handleClose('edit')}>
 					Close
 				</Button>
-				<Button
-					variant="primary"
-					onClick={() => addUser(email, firstName, lastName)}
-				>
+				<Button variant="primary" onClick={() => editUser(id)}>
 					Save
 				</Button>
 			</Modal.Footer>
@@ -69,4 +63,4 @@ const CreateUserModal = () => {
 	);
 };
 
-export default CreateUserModal;
+export default EditUserModal;

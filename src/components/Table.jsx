@@ -6,9 +6,13 @@ import { FaTrash } from 'react-icons/fa';
 import { BsPencilFill } from 'react-icons/bs';
 // Context API
 import { ContextProvider } from '../context/context';
+// Data
+import { dataStyles } from '../data/dataContainer';
+// Components
+import EditUserModal from './EditUserModal';
 
 const TableComponent = () => {
-	const { users } = useContext(ContextProvider);
+	const { users, handleShow, linkId } = useContext(ContextProvider);
 
 	return (
 		<Table striped bordered hover size="sm">
@@ -20,11 +24,11 @@ const TableComponent = () => {
 				</tr>
 			</thead>
 
-			{users &&
-				users.map((item) => {
-					return (
-						<tbody>
-							<tr>
+			<tbody>
+				{users &&
+					users.map((item) => {
+						return (
+							<tr key={item.id}>
 								<td className="text-center">{item.id}</td>
 								<td className="d-flex">
 									<img
@@ -41,17 +45,22 @@ const TableComponent = () => {
 								</td>
 
 								<td>
-									<button className="bg-white p-2 rounded border-0">
-										<BsPencilFill style={{ color: '#585858' }} />
+									<button
+										className={dataStyles.button}
+										onClick={() => handleShow('edit', item.id)}
+									>
+										<BsPencilFill />
 									</button>
-									<button className="bg-white p-2 rounded border-0 mx-3">
-										<FaTrash style={{ color: '#585858' }} />
+
+									<button className={dataStyles.button}>
+										<FaTrash />
 									</button>
 								</td>
 							</tr>
-						</tbody>
-					);
-				})}
+						);
+					})}
+				<EditUserModal id={linkId} />
+			</tbody>
 		</Table>
 	);
 };
