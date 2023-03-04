@@ -1,39 +1,13 @@
-export const alphabeth = [
-	'A',
-	'B',
-	'C',
-	'D',
-	'E',
-	'F',
-	'G',
-	'H',
-	'I',
-	'J',
-	'K',
-	'L',
-	'M',
-	'N',
-	'O',
-	'P',
-	'Q',
-	'R',
-	'S',
-	'T',
-	'U',
-	'V',
-	'W',
-	'X',
-	'Y',
-	'Z',
-];
-
 export const myInfo = {
-	name: 'Charlito Jr. Mecarez',
+	first_name: 'Charlito',
+	last_name: 'Mecarez',
 	email: 'charlitomecarezjr@gmail.com',
 };
 
 export const dataStyles = {
 	textDeco: 'text-decoration-none text-dark',
+	userBanner:
+		'https://img.icons8.com/external-wanicon-lineal-color-wanicon/256/external-users-user-interface-wanicon-lineal-color-wanicon.png',
 	designBetween:
 		'd-flex align-items-center justify-content-between py-2 border-bottom',
 	button: 'bg-white p-2 rounded border-0 mx-1',

@@ -9,7 +9,7 @@ import { ContextProvider } from '../context/context';
 import { dataStyles } from '../data/dataContainer';
 
 const Users = () => {
-	const { handleShow } = useContext(ContextProvider);
+	const { handleShow, users } = useContext(ContextProvider);
 
 	return (
 		<div className="container">
@@ -17,6 +17,7 @@ const Users = () => {
 				<div>
 					<h4>Users</h4>
 					<p>Manage your team members and their account permissions here.</p>
+					<small>Total number of users: {users?.length}</small>
 				</div>
 				<button className="button" onClick={() => handleShow('create')}>
 					+ create user

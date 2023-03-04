@@ -19,22 +19,19 @@ const CreateUserModal = () => {
 		setLastName,
 	} = useContext(ContextProvider);
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		addUser(email, firstName, lastName);
+	};
+
 	return (
 		<Modal show={createModal} onHide={() => handleClose('create')}>
 			<Modal.Header closeButton>
 				<Modal.Title>Edit User</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<Form>
-					<Form.Group className="mb-1">
-						<Form.Label>Email address</Form.Label>
-						<Form.Control
-							type="email"
-							placeholder="Enter email"
-							required
-							onChange={(e) => setEmail(e.target.value)}
-						/>
-					</Form.Group>
+				<Form onSubmit={handleSubmit}>
 					<Form.Group className="mb-1">
 						<Form.Label>First name</Form.Label>
 						<Form.Control
@@ -53,19 +50,29 @@ const CreateUserModal = () => {
 							onChange={(e) => setLastName(e.target.value)}
 						/>
 					</Form.Group>
+					<Form.Group className="mb-1">
+						<Form.Label>Email address</Form.Label>
+						<Form.Control
+							type="email"
+							placeholder="Enter email"
+							required
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+					</Form.Group>
+					<div className="mt-3 d-flex justify-content-end">
+						<Button
+							variant="secondary"
+							onClick={() => handleClose('create')}
+							className="mx-2"
+						>
+							Close
+						</Button>
+						<Button type="submit" variant="primary">
+							Create
+						</Button>
+					</div>
 				</Form>
 			</Modal.Body>
-			<Modal.Footer>
-				<Button variant="secondary" onClick={() => handleClose('create')}>
-					Close
-				</Button>
-				<Button
-					variant="primary"
-					onClick={() => addUser(email, firstName, lastName)}
-				>
-					Save
-				</Button>
-			</Modal.Footer>
 		</Modal>
 	);
 };

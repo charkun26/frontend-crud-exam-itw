@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 // Context
 import { ContextProvider } from '../context/context';
 
-const EditUserModal = ({ id }) => {
+const EditUserModal = ({ userId }) => {
 	const {
 		editModal,
 		handleClose,
@@ -14,7 +14,16 @@ const EditUserModal = ({ id }) => {
 		setEmail,
 		setFirstName,
 		setLastName,
+		firstName,
+		lastName,
+		email,
 	} = useContext(ContextProvider);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		editUser(userId);
+	};
 
 	return (
 		<Modal show={editModal} onHide={() => handleClose('edit')}>
@@ -22,16 +31,7 @@ const EditUserModal = ({ id }) => {
 				<Modal.Title>Edit User (Edit)</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<Form>
-					<Form.Group className="mb-1">
-						<Form.Label>Email address</Form.Label>
-						<Form.Control
-							type="email"
-							placeholder="Enter email"
-							required
-							onChange={(e) => setEmail(e.target.value)}
-						/>
-					</Form.Group>
+				<Form onSubmit={handleSubmit}>
 					<Form.Group className="mb-1">
 						<Form.Label>First name</Form.Label>
 						<Form.Control
@@ -39,6 +39,7 @@ const EditUserModal = ({ id }) => {
 							placeholder="Enter first name"
 							required
 							onChange={(e) => setFirstName(e.target.value)}
+							value={firstName}
 						/>
 					</Form.Group>
 					<Form.Group className="mb-1">
@@ -48,18 +49,33 @@ const EditUserModal = ({ id }) => {
 							placeholder="Enter last name"
 							required
 							onChange={(e) => setLastName(e.target.value)}
+							value={lastName}
 						/>
 					</Form.Group>
+					<Form.Group className="mb-1">
+						<Form.Label>Email address</Form.Label>
+						<Form.Control
+							type="email"
+							placeholder="Enter email"
+							required
+							onChange={(e) => setEmail(e.target.value)}
+							value={email}
+						/>
+					</Form.Group>
+					<div className="mt-3 d-flex justify-content-end">
+						<Button
+							variant="secondary"
+							onClick={() => handleClose('edit')}
+							className="mx-2"
+						>
+							Close
+						</Button>
+						<Button type="submit" variant="primary">
+							Edit
+						</Button>
+					</div>
 				</Form>
 			</Modal.Body>
-			<Modal.Footer>
-				<Button variant="secondary" onClick={() => handleClose('edit')}>
-					Close
-				</Button>
-				<Button variant="primary" onClick={() => editUser(id)}>
-					Save
-				</Button>
-			</Modal.Footer>
 		</Modal>
 	);
 };
