@@ -1,15 +1,11 @@
 // React
-import React, { useContext } from 'react';
-// Context API
-import { ContextProvider } from '../context/context';
+import React from 'react';
 // Libraries
 import { Link } from 'react-router-dom';
 // Data
-import { dataStyles } from '../data/dataContainer';
+import { dataStyles, myInfo } from '../data/dataContainer';
 
 const Home = () => {
-	const { myInfo } = useContext(ContextProvider);
-
 	const { first_name, last_name, email } = myInfo;
 
 	return (

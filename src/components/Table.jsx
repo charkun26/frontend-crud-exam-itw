@@ -15,16 +15,7 @@ import DeleteUserModal from './DeleteUserModal';
 import Paginate from './Paginate';
 
 const TableComponent = () => {
-	const {
-		currentRecords,
-		handleShow,
-		linkId,
-		nextPage,
-		prevPage,
-		nPages,
-		currentPage,
-		setCurrentPage,
-	} = useContext(ContextProvider);
+	const { currentRecords, handleShow, linkId } = useContext(ContextProvider);
 
 	return (
 		<>
@@ -48,25 +39,25 @@ const TableComponent = () => {
 										<tr key={item.id}>
 											<td className="text-center">{item.id}</td>
 
-											<td className="d-flex">
-												<img
-													src={item.avatar}
-													alt={`${item.avatar}`}
-													className="rounded-circle mx-2"
-													style={{ width: '50px' }}
-												/>
-												<div>
-													<Link
-														to={`/user/${item.id}`}
-														className={dataStyles.textDeco}
-													>
+											<td>
+												<Link
+													to={`/user/${item.id}`}
+													className={`${dataStyles.textDeco} d-flex`}
+												>
+													<img
+														src={item.avatar}
+														alt={`${item.avatar}`}
+														className="rounded-circle mx-2"
+														style={{ width: '50px' }}
+													/>
+													<div>
 														<small>
 															{item.first_name + ' ' + item.last_name}
 														</small>
 														<br></br>
 														<small>{item.email}</small>
-													</Link>
-												</div>
+													</div>
+												</Link>
 											</td>
 
 											<td>
@@ -91,10 +82,9 @@ const TableComponent = () => {
 						<EditUserModal userId={linkId} />
 						<DeleteUserModal userId={linkId} />
 					</Table>
+					<Paginate />
 				</>
 			)}
-
-			<Paginate />
 		</>
 	);
 };
