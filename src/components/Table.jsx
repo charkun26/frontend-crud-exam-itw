@@ -15,11 +15,12 @@ import DeleteUserModal from './DeleteUserModal';
 import Paginate from './Paginate';
 
 const TableComponent = () => {
-	const { currentRecords, handleShow, linkId } = useContext(ContextProvider);
+	const { users, currentRecords, handleShow, linkId } =
+		useContext(ContextProvider);
 
 	return (
 		<>
-			{currentRecords?.length === 0 ? (
+			{users?.length === 0 ? (
 				<h2 className="text-center mt-5">No user found</h2>
 			) : (
 				<>
